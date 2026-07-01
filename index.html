@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding | 婚禮邀請函</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        morandi: {
+                            dark: '#F2DBD5',
+                            light: '#EED1CC',
+                            text: '#5c4d47',
+                            muted: '#8a7973'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"NaikaiFont-Regular"', '"Noto Serif TC"', 'serif'],
+                        en: ['"辰宇落雁體 2.0"', '"ChenYuluoyan"', '"Cinzel"', 'serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 10px rgba(255, 255, 255, 0.4)',
+                        'soft': '0 10px 25px -5px rgba(242, 219, 213, 0.4)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #fdfaf9; color: #5c4d47; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fdfaf9; }
+        ::-webkit-scrollbar-thumb { background: #EED1CC; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #F2DBD5; }
+
+        .timer-divider { width: 1px; height: 32px; background: linear-gradient(to bottom, transparent, rgba(92, 77, 71, 0.3), transparent); margin: 0 16px; }
+        .no-wrap { white-space: nowrap; }
+        .conditional-field { transition: all 0.5s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
+        .conditional-field.show { max-height: 800px; opacity: 1; margin-top: 1rem; }
+        .accordion-content { transition: max-height 0.4s ease-out, padding 0.4s ease; max-height: 0; overflow: hidden; padding: 0 1.25rem; }
+        .accordion-content.open { max-height: 400px; padding: 1.25rem; }
+        .accordion-icon { transition: transform 0.3s ease; }
+        .accordion-btn.open .accordion-icon { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="antialiased selection:bg-morandi-light selection:text-white">
+
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/60 border-b border-morandi-light/30 shadow-sm transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 font-en text-7xl tracking-tighter text-morandi-text">
+                    J & L
+                </div>
+                <div class="hidden md:flex space-x-10 text-xl">
+                    <a href="#hero" class="text-morandi-text hover:text-morandi-muted transition-colors duration-200">關於我們</a>
+                    <a href="#details" class="text-morandi-text hover:text-morandi-muted transition-colors duration-200">婚禮詳情</a>
+                    <a href="#rsvp" class="text-morandi-text hover:text-morandi-muted transition-colors duration-200">出席回函</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <a href="#rsvp" class="bg-morandi-light text-white px-8 py-4 rounded-full text-2xl shadow-md font-en tracking-wider">RSVP</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero" class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://i.postimg.cc/L5BZ5yYt/A7676-0201.jpg" alt="Wedding" class="w-full h-full object-cover opacity-80 mix-blend-multiply" />
+            <div class="absolute inset-0 bg-gradient-to-b from-morandi-light/40 to-white/90"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 mt-20">
+            <h2 class="font-sans text-6xl md:text-8xl tracking-widest mb-4 text-morandi-text drop-shadow-md font-bold">菳育良緣</h2>
+            <h1 class="text-8xl md:text-[10rem] font-en mb-4 text-morandi-text drop-shadow-md">Joe & Lisa</h1>
+            <p class="text-3xl md:text-4xl text-morandi-text font-sans mb-10 tracking-wider">汪子育 <span class="font-en mx-1">&</span> 張菳庭</p>
+            <p class="text-2xl md:text-3xl mb-16 tracking-wider inline-block bg-[#EBD6D6] text-white px-8 py-3 rounded-2xl" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.55);">誠摯地邀請您，見證我們的幸福時刻</p>
+        </div>
+
+        <div class="relative z-10 w-full max-w-3xl px-4" id="countdown">
+            <div class="flex justify-center items-center space-x-6 md:space-x-10">
+                <div class="bg-white/90 backdrop-blur-sm shadow-glow rounded-3xl p-8 flex items-center justify-center border border-morandi-light/50">
+                    <span id="days" class="text-7xl md:text-9xl font-en text-morandi-text">00</span>
+                    <div class="timer-divider"></div>
+                    <span class="text-2xl md:text-3xl text-morandi-muted tracking-widest uppercase font-en">Days</span>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm shadow-glow rounded-3xl p-8 flex items-center justify-center border border-morandi-light/50">
+                    <span id="hours" class="text-7xl md:text-9xl font-en text-morandi-text">00</span>
+                    <div class="timer-divider"></div>
+                    <span class="text-2xl md:text-3xl text-morandi-muted tracking-widest uppercase font-en">Hrs</span>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm shadow-glow rounded-3xl p-8 flex items-center justify-center border border-morandi-light/50">
+                    <span id="minutes" class="text-7xl md:text-9xl font-en text-morandi-text">00</span>
+                    <div class="timer-divider"></div>
+                    <span class="text-2xl md:text-3xl text-morandi-muted tracking-widest uppercase font-en">Min</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="details" class="py-32 bg-gradient-to-b from-white to-[#fdfaf9]">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl text-morandi-text font-semibold tracking-widest mb-4">婚禮詳情</h2>
+                <div class="w-24 h-1.5 bg-morandi-light mx-auto rounded-full"></div>
+            </div>
+
+            <div class="w-full bg-white rounded-[2rem] shadow-soft p-12 md:p-20 border border-morandi-light/20">
+                <div class="flex flex-col space-y-12 text-center md:text-left items-center md:items-start">
+                    
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 w-full">
+                        <div class="w-16 h-16 rounded-full bg-morandi-dark/30 flex items-center justify-center flex-shrink-0 text-morandi-text">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-5xl text-morandi-text font-semibold mb-3 font-en">DATE</h3>
+                            <p class="text-2xl text-morandi-muted tracking-wider"><span class="text-4xl font-en">2026</span> 年 <span class="text-4xl font-en">12</span> 月 <span class="text-4xl font-en">05</span> 日 (星期六)</p>
+                        </div>
+                    </div>
+                    <div class="w-full h-px bg-morandi-light/30"></div>
+                    
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 w-full">
+                        <div class="w-16 h-16 rounded-full bg-morandi-dark/30 flex items-center justify-center flex-shrink-0 text-morandi-text">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-5xl text-morandi-text font-semibold mb-3 font-en">CEREMONY</h3>
+                            <p class="text-2xl text-morandi-muted tracking-wider no-wrap">證婚儀式：浸宣員林教會</p>
+                            <a href="https://share.google/blkd4vG3Ak40WSSq8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-2 text-lg text-morandi-muted hover:text-morandi-text transition-colors no-wrap group">
+                                <svg class="w-5 h-5 mr-1.5 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                彰化縣員林市中正里三民東街25號
+                            </a>
+                            <p class="text-lg text-morandi-muted mt-2 no-wrap"><span class="text-2xl font-en">09:20</span> 入場 &nbsp;&nbsp; <span class="text-2xl font-en">09:30</span> 開始</p>
+                        </div>
+                    </div>
+                    <div class="w-full h-px bg-morandi-light/30"></div>
+
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 w-full">
+                        <div class="w-16 h-16 rounded-full bg-morandi-dark/30 flex items-center justify-center flex-shrink-0 text-morandi-text">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-5xl text-morandi-text font-semibold mb-3 font-en">BANQUET</h3>
+                            <p class="text-2xl text-morandi-muted tracking-wider no-wrap">午宴場地：唯愛庭園</p>
+                            <a href="https://share.google/9BremxKULDoncm6Dy" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-2 text-lg text-morandi-muted hover:text-morandi-text transition-colors no-wrap group">
+                                <svg class="w-5 h-5 mr-1.5 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                彰化市延和里大埔路2巷126號
+                            </a>
+                            <p class="text-lg text-morandi-muted mt-2 no-wrap"><span class="text-2xl font-en">12:00</span> 入席 &nbsp;&nbsp; <span class="text-2xl font-en">12:30</span> 準時開席</p>
+                        </div>
+                    </div>
+                    <div class="w-full h-px bg-morandi-light/30"></div>
+
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 w-full">
+                        <div class="w-16 h-16 rounded-full bg-morandi-dark/30 flex items-center justify-center flex-shrink-0 text-morandi-text">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-5xl text-morandi-text font-semibold mb-3 font-en">DRESS CODE</h3>
+                            <p class="text-2xl text-morandi-muted tracking-wider mb-6">歡迎穿著 <span class="text-morandi-text font-bold bg-morandi-light/40 px-2 py-0.5 rounded-lg mx-1">大地色系</span> 服裝參與</p>
+                            <div class="flex flex-wrap justify-center md:justify-start gap-8">
+                                <div class="flex flex-col items-center group">
+                                    <div class="w-16 h-16 rounded-full shadow-md mb-3 border-[3px] border-white group-hover:scale-110 transition-transform duration-300" style="background-color: #DFD1A7;"></div>
+                                    <span class="text-lg text-morandi-text font-medium no-wrap">燕麥色</span>
+                                </div>
+                                <div class="flex flex-col items-center group">
+                                    <div class="w-16 h-16 rounded-full shadow-md mb-3 border-[3px] border-white group-hover:scale-110 transition-transform duration-300" style="background-color: #ecdcc2;"></div>
+                                    <span class="text-lg text-morandi-text font-medium no-wrap">奶茶色</span>
+                                </div>
+                                <div class="flex flex-col items-center group">
+                                    <div class="w-16 h-16 rounded-full shadow-md mb-3 border-[3px] border-white group-hover:scale-110 transition-transform duration-300" style="background-color: #F5F5DC;"></div>
+                                    <span class="text-lg text-morandi-text font-medium no-wrap">米白色</span>
+                                </div>
+                                <div class="flex flex-col items-center group">
+                                    <div class="w-16 h-16 rounded-full shadow-md mb-3 border-[3px] border-white group-hover:scale-110 transition-transform duration-300" style="background-color: #E2D0B8;"></div>
+                                    <span class="text-lg text-morandi-text font-medium no-wrap">沙色</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 max-w-3xl mx-auto">
+                <div class="bg-white rounded-xl shadow-sm border border-morandi-light/40 overflow-hidden">
+                    <div class="border-b border-morandi-light/20">
+                        <button class="accordion-btn w-full flex justify-between items-center p-8 bg-white hover:bg-[#FCF9F8] transition-colors" onclick="toggleAccordion('acc-transit', this)">
+                            <span class="text-2xl text-morandi-text font-medium tracking-wider">浸宣員林教會 停車資訊</span>
+                            <svg class="accordion-icon w-8 h-8 text-morandi-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="acc-transit" class="accordion-content bg-[#FCF9F8]">
+                            <ul class="space-y-5 text-xl text-morandi-muted leading-relaxed pb-8">
+                                <li class="flex items-start">
+                                    <span class="text-morandi-light mr-3 mt-1">✦</span>
+                                    <span><span class="font-semibold text-morandi-text">教會內停車場 (免費)</span>：因教會車位有限，建議提早抵達。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-morandi-light mr-3 mt-1">✦</span>
+                                    <div class="flex-1">
+                                        <a href="https://share.google/433blCkjXkGBRP2fP" target="_blank" rel="noopener noreferrer" class="hover:text-morandi-text transition-colors inline-flex items-center group flex-wrap">
+                                            <span class="font-semibold text-morandi-text border-b border-morandi-light/30 group-hover:border-morandi-text transition-colors">員林市公所停車場 (收費)</span>
+                                            <svg class="w-5 h-5 ml-1 text-morandi-light group-hover:text-morandi-text group-hover:-translate-y-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                        </a>
+                                        <span class="text-morandi-muted ml-1 inline-block">：步行約2分鐘</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-morandi-light mr-3 mt-1">✦</span>
+                                    <div class="flex-1">
+                                        <a href="https://share.google/Li76ZmGszL88c20Nw" target="_blank" rel="noopener noreferrer" class="hover:text-morandi-text transition-colors inline-flex items-center group flex-wrap">
+                                            <span class="font-semibold text-morandi-text border-b border-morandi-light/30 group-hover:border-morandi-text transition-colors">員林公園停車場 (收費)</span>
+                                            <svg class="w-5 h-5 ml-1 text-morandi-light group-hover:text-morandi-text group-hover:-translate-y-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                        </a>
+                                        <span class="text-morandi-muted ml-1 inline-block">：步行約3分鐘</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-morandi-light mr-3 mt-1">✦</span>
+                                    <div class="flex-1">
+                                        <a href="https://share.google/266JkpfoDduoHs7qO" target="_blank" rel="noopener noreferrer" class="hover:text-morandi-text transition-colors inline-flex items-center group flex-wrap">
+                                            <span class="font-semibold text-morandi-text border-b border-morandi-light/30 group-hover:border-morandi-text transition-colors">城市車旅停車場-員林國小站 (收費)</span>
+                                            <svg class="w-5 h-5 ml-1 text-morandi-light group-hover:text-morandi-text group-hover:-translate-y-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                        </a>
+                                        <span class="text-morandi-muted ml-1 inline-block">：步行約4分鐘</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-morandi-light mr-3 mt-1">✦</span>
+                                    <div class="flex-1">
+                                        <a href="https://maps.app.goo.gl/6zFjsUhTC8uzTGZcA" target="_blank" rel="noopener noreferrer" class="hover:text-morandi-text transition-colors inline-flex items-center group flex-wrap">
+                                            <span class="font-semibold text-morandi-text border-b border-morandi-light/30 group-hover:border-morandi-text transition-colors">嘟嘟房停車場-員林萬年站 (收費)</span>
+                                            <svg class="w-5 h-5 ml-1 text-morandi-light group-hover:text-morandi-text group-hover:-translate-y-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                        </a>
+                                        <span class="text-morandi-muted ml-1 inline-block">：步行約5分鐘</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-morandi-light mr-3 mt-1">✦</span>
+                                    <div class="flex-1">
+                                        <a href="https://share.google/C3bgdv8WARjPukknm" target="_blank" rel="noopener noreferrer" class="hover:text-morandi-text transition-colors inline-flex items-center group flex-wrap">
+                                            <span class="font-semibold text-morandi-text border-b border-morandi-light/30 group-hover:border-morandi-text transition-colors">國雲停車泊車趣-員林博愛場 (收費)</span>
+                                            <svg class="w-5 h-5 ml-1 text-morandi-light group-hover:text-morandi-text group-hover:-translate-y-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                        </a>
+                                        <span class="text-morandi-muted ml-1 inline-block">：步行約5分鐘</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-morandi-light mr-3 mt-1">✦</span>
+                                    <div class="flex-1">
+                                        <span class="text-morandi-text">亦可停放 <span class="font-semibold">三民東街</span>、<span class="font-semibold">育英路</span> 路邊收費停車格</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="accordion-btn w-full flex justify-between items-center p-8 bg-white hover:bg-[#FCF9F8] transition-colors" onclick="toggleAccordion('acc-drive', this)">
+                            <span class="text-2xl text-morandi-text font-medium tracking-wider">唯愛庭園 如何前往</span>
+                            <svg class="accordion-icon w-8 h-8 text-morandi-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="acc-drive" class="accordion-content bg-[#FCF9F8]">
+                            <div class="pb-8 space-y-6 text-xl text-morandi-muted leading-relaxed">
+                                <ul class="space-y-6 pt-2">
+                                    <li class="flex flex-col">
+                                        <span class="font-semibold text-morandi-text mb-1 text-xl">▸ 國道1</span>
+                                        <span class="text-lg leading-relaxed">往彰化市區 ￫ 中華西路 ￫ 中央路右轉過橋 ￫ 中山路左轉 ￫ 南平路右轉 ￫ 大埔路右轉直行 ￫ 大埔路2巷左轉 ￫ 抵達園區</span>
+                                    </li>
+                                    <li class="flex flex-col">
+                                        <span class="font-semibold text-morandi-text mb-1 text-xl">▸ 省道1台中南下方向</span>
+                                        <span class="text-lg leading-relaxed">往彰化市區 ￫ 中山路一段 ￫ 南平街左轉 ￫ 大埔路右轉直行 ￫ 大埔路2巷左轉 ￫ 抵達園區</span>
+                                    </li>
+                                    <li class="flex flex-col">
+                                        <span class="font-semibold text-morandi-text mb-1 text-xl">▸ 省道1員林北上方向</span>
+                                        <span class="text-lg leading-relaxed">往彰化市區 ￫ 中山路一段至大排水溝右轉 ￫ 大埔路右轉直行 ￫ 大埔路2巷右轉 ￫ 抵達園區</span>
+                                    </li>
+                                    <li class="flex flex-col">
+                                        <span class="font-semibold text-morandi-text mb-1 text-xl">▸ 74快速道路</span>
+                                        <span class="text-lg leading-relaxed">137線往花壇 ￫ 彰員路右轉 ￫ 彰員路二段直行約10分鐘 ￫ 大埔路2巷左轉 ￫ 抵達園區</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp" class="py-32 bg-morandi-dark/10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl text-morandi-text font-semibold tracking-widest mb-4">出席回函</h2>
+                <p class="text-3xl text-morandi-muted mt-2 tracking-widest font-en">RSVP</p>
+                <div class="w-24 h-1.5 bg-morandi-light mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted){showSuccessModal();}"></iframe>
+
+            <form action="https://docs.google.com/forms/d/e/1FAIpQLSeANfovDIH5EHZ5w7ojGEGiiTPlL6idfRj5pW2ZHNdIZWyM3A/formResponse" 
+                  method="POST" 
+                  target="hidden_iframe" 
+                  class="bg-white rounded-3xl shadow-soft p-10 md:p-16 border border-morandi-light/30"
+                  onsubmit="window.submitted=true;">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+                    <div>
+                        <label class="block text-xl font-medium text-morandi-text mb-3">您的姓名 <span class="font-en text-3xl text-morandi-muted ml-1">Name *</span></label>
+                        <input type="text" name="entry.1404181431" required class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xl font-medium text-morandi-text mb-3">手機號碼 <span class="font-en text-3xl text-morandi-muted ml-1">Phone *</span></label>
+                        <input type="tel" name="entry.2114969093" required class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xl font-medium text-morandi-text mb-3">電子郵件地址 <span class="font-en text-3xl text-morandi-muted ml-1">Email *</span></label>
+                        <input type="email" name="entry.861842256" required class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xl font-medium text-morandi-text mb-3">與新人的關係 <span class="font-en text-3xl text-morandi-muted ml-1">Relationship *</span></label>
+                        <select name="entry.1284275211" required class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                            <option value="" disabled selected>請選擇 Please Select</option>
+                            <option value="男方家人親戚">男方家人親戚</option>
+                            <option value="男方同學">男方同學</option>
+                            <option value="男方好友">男方好友</option>
+                            <option value="男方同事">男方同事</option>
+                            <option value="女方家人親戚">女方家人親戚</option>
+                            <option value="女方同學">女方同學</option>
+                            <option value="女方好友">女方好友</option>
+                            <option value="女方追星朋朋">女方追星朋朋</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xl font-medium text-morandi-text mb-3">出席「證婚儀式」人數 <span class="text-base text-morandi-muted ml-1">(含您本人) *</span></label>
+                        <input type="number" name="entry.1341024243" min="0" required class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xl font-medium text-morandi-text mb-3">出席「午宴」人數 <span class="text-base text-morandi-muted ml-1">(含您本人) *</span></label>
+                        <input type="number" id="banquetAttendCount" name="entry.476558452" min="0" required class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                    </div>
+                    
+                    <div id="conditionalSection" class="conditional-field md:col-span-2 bg-morandi-dark/5 p-8 rounded-2xl border border-morandi-light/20">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <label class="block text-xl font-medium text-morandi-text mb-3">兒童椅數量？ <span class="font-en text-3xl text-morandi-muted ml-1">High Chair</span></label>
+                                <input type="number" name="entry.1503234445" min="0" class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-xl font-medium text-morandi-text mb-3">飲食需求 <span class="font-en text-3xl text-morandi-muted ml-1">Dietary</span></label>
+                                <select name="entry.1587566262" class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                                    <option value="" disabled selected>請選擇 Please Select</option>
+                                    <option value="葷">葷</option>
+                                    <option value="素">素</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block text-xl font-medium text-morandi-text mb-3">您有哪位明星的追星手燈嗎？(帶來可以領小禮物呦~) <span class="font-en text-3xl text-morandi-muted ml-1">Lightstick</span></label>
+                        <input type="text" name="entry.760863083" class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-xl font-medium text-morandi-text mb-3">喜帖需求 <span class="font-en text-3xl text-morandi-muted ml-1">Invitation *</span></label>
+                        <select name="entry.1745240103" required class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white">
+                            <option value="" disabled selected>請選擇 Please Select</option>
+                            <option value="紙本">紙本喜帖</option>
+                            <option value="電子 (環保電子版本，透過Email或通訊軟體發送)">電子喜帖 (環保電子版本，透過Email或通訊軟體發送)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block text-xl font-medium text-morandi-text mb-3">紙本喜帖寄送地址 <span class="font-en text-3xl text-morandi-muted ml-1">Address</span></label>
+                        <input type="text" name="entry.1069752299" class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all bg-white" placeholder="若選擇電子喜帖則免填">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-xl font-medium text-morandi-text mb-3">給新人的祝福或備註 <span class="font-en text-3xl text-morandi-muted ml-1">Wishes</span></label>
+                        <textarea name="entry.1416780888" rows="3" class="w-full px-6 py-4 rounded-xl border border-gray-200 focus:border-morandi-light focus:ring-2 focus:ring-morandi-light/20 outline-none transition-all resize-none bg-white"></textarea>
+                    </div>
+                    
+                    <div class="md:col-span-2 mt-6 text-center">
+                        <button type="submit" class="bg-morandi-text text-white px-16 py-6 rounded-full text-xl font-medium tracking-widest hover:bg-morandi-muted hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            送出回函 <span class="font-en text-3xl ml-2">SUBMIT</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6">
+        <div class="absolute inset-0 bg-morandi-text/40 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg p-12 text-center transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+            <div class="w-24 h-24 bg-morandi-dark/50 rounded-full flex items-center justify-center mx-auto mb-8">
+                <svg class="w-12 h-12 text-morandi-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="text-4xl font-semibold text-morandi-text mb-4 tracking-widest">回函成功</h3>
+            <p class="text-2xl text-morandi-muted mb-10 tracking-wider">非常感謝您的回覆，我們期待與您共同分享這份喜悅！</p>
+            <button onclick="closeModal()" class="bg-morandi-light text-morandi-text px-12 py-5 rounded-full text-xl font-medium tracking-widest hover:bg-morandi-dark transition-colors">
+                關閉 <span class="text-3xl font-en ml-2">CLOSE</span>
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-white py-12 border-t border-morandi-light/20 text-center">
+        <p class="font-en text-4xl text-morandi-muted tracking-widest">J & L WEDDING &copy; 2026</p>
+        <p class="text-lg text-morandi-muted/60 mt-4 font-en">Design with Love</p>
+    </footer>
+
+    <script>
+        window.submitted = false;
+
+        const countDownDate = new Date("Dec 05, 2026 09:30:00").getTime();
+        const updateTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+
+            if (distance < 0) clearInterval(updateTimer);
+        }, 1000);
+
+        function toggleAccordion(id, btn) {
+            const content = document.getElementById(id);
+            const isOpen = content.classList.contains('open');
+            if (isOpen) {
+                content.classList.remove('open');
+                btn.classList.remove('open');
+            } else {
+                content.classList.add('open');
+                btn.classList.add('open');
+            }
+        }
+
+        const banquetAttendCountInput = document.getElementById('banquetAttendCount');
+        const conditionalSection = document.getElementById('conditionalSection');
+        const dietSelect = document.querySelector('select[name="entry.1587566262"]');
+
+        banquetAttendCountInput.addEventListener('input', function(e) {
+            const count = parseInt(e.target.value);
+            if (count > 0) {
+                conditionalSection.classList.add('show');
+                dietSelect.setAttribute('required', 'required');
+            } else {
+                conditionalSection.classList.remove('show');
+                dietSelect.removeAttribute('required');
+                dietSelect.value = "";
+            }
+        });
+
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            document.querySelector('form').reset();
+            conditionalSection.classList.remove('show');
+            window.submitted = false;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('modalContent');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
